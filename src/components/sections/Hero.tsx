@@ -69,7 +69,7 @@ export default function Hero() {
     <section
       id="hero"
       ref={heroRef}
-      className="relative h-screen w-full overflow-hidden bg-black"
+      className="relative h-screen w-full overflow-hidden bg-black [isolation:isolate]"
     >
       {/* Layer 1: Gradient-Shimmer-Fallback — sichtbar wenn das Video fehlt. */}
       <div
@@ -88,8 +88,9 @@ export default function Hero() {
         muted
         loop
         playsInline
-        preload="metadata"
+        preload="auto"
         aria-hidden="true"
+        disableRemotePlayback
         className="absolute inset-0 h-full w-full object-cover object-[center_85%] brightness-[1.3] contrast-[1.2]"
       >
         <source src="/videos/hero.mp4" type="video/mp4" />
