@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { gsap, ScrollTrigger } from "@/lib/animations";
+import { gsap } from "@/lib/animations";
 
 const SERVICES = [
   "Mechanik",
@@ -24,35 +24,43 @@ export default function Hero() {
     ).matches;
     if (reduceMotion) return;
 
+    // Header-Elemente ausserhalb des Hero-DOM via Selector auflösen.
+    const headerLogo = document.querySelector<HTMLElement>("#header-logo");
+    const headerBg = document.querySelector<HTMLElement>("#header-bg");
+
     const ctx = gsap.context(() => {
-      gsap.to([logoBlockRef.current, servicesRef.current], {
-        opacity: 0,
-        y: -20,
-        ease: "none",
+      // Eine Timeline, ein ScrollTrigger, fünf parallele Opacity-Tweens.
+      const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: document.body,
-          start: 0,
-          end: () => window.innerHeight * 0.6,
+          trigger: heroRef.current,
+          start: "top top",
+          end: "60% top",
           scrub: true,
         },
       });
 
-      gsap.to(chevronRef.current, {
-        opacity: 0,
-        ease: "none",
-        scrollTrigger: {
-          trigger: document.body,
-          start: 0,
-          end: () => window.innerHeight * 0.2,
-          scrub: true,
-        },
-      });
+      // Hero-Inhalte: Logo-Block + Services + Chevron faden aus (1 → 0).
+      tl.to(
+        [
+          logoBlockRef.current,
+          servicesRef.current,
+          chevronRef.current,
+        ],
+        { opacity: 0, ease: "none" },
+        0,
+      );
+
+      // Header: ACAB-Logo + Background faden ein (0 → 1).
+      if (headerLogo && headerBg) {
+        tl.to(
+          [headerLogo, headerBg],
+          { opacity: 1, ease: "none" },
+          0,
+        );
+      }
     }, heroRef);
 
-    return () => {
-      ctx.revert();
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
+    return () => ctx.revert();
   }, []);
 
   return (
