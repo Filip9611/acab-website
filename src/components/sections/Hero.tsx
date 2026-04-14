@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { gsap } from "@/lib/animations";
+import { gsap, ScrollTrigger } from "@/lib/animations";
 
 const SERVICES = [
   "Mechanik",
@@ -25,74 +25,101 @@ export default function Hero() {
     if (reduceMotion) return;
 
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
+      gsap.to([logoBlockRef.current, servicesRef.current], {
+        opacity: 0,
+        y: -20,
+        ease: "none",
         scrollTrigger: {
-          trigger: heroRef.current,
-          start: "top top",
-          end: "60% top",
+          trigger: document.body,
+          start: 0,
+          end: () => window.innerHeight * 0.6,
           scrub: true,
         },
       });
 
-      // Hero-Inhalte (Logo-Block, Services, Chevron) faden aus.
-      tl.to(
-        [logoBlockRef.current, servicesRef.current, chevronRef.current],
-        { opacity: 0, ease: "none" },
-        0,
-      );
+      gsap.to(chevronRef.current, {
+        opacity: 0,
+        ease: "none",
+        scrollTrigger: {
+          trigger: document.body,
+          start: 0,
+          end: () => window.innerHeight * 0.2,
+          scrub: true,
+        },
+      });
+    }, heroRef);
 
-      // Header-ACAB + Header-Hintergrund faden ein (Crossfade).
-      tl.to(
-        ["#header-logo", "#header-bg"],
-        { opacity: 1, ease: "none" },
-        0,
-      );
-    });
-
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+    };
   }, []);
 
   return (
     <section
-      id="hero"
       ref={heroRef}
-      className="relative flex h-screen w-full items-center justify-center overflow-hidden bg-black"
+      className="relative h-screen w-full overflow-hidden bg-black"
     >
-      {/* Logo-Block: ACAB + Subtitle in einer flex-col.
-          padding-bottom = (H_acab - H_subtitle) verschiebt den Block so,
-          dass die MITTE des Gaps zwischen den Zeilen auf 50vh liegt.
-          Normale Flow-Position, kein fixed, kein transform. */}
+      {/* Layer 1: Gradient-Shimmer-Fallback — sichtbar wenn das Video fehlt. */}
       <div
-        ref={logoBlockRef}
-        className="acab-hero-title flex flex-col items-center gap-3 px-6"
+        aria-hidden="true"
+        className="absolute inset-0 animate-shimmer"
         style={{
-          paddingBottom:
-            "calc(clamp(6rem, 15vw, 16rem) - clamp(2.5rem, 8vw, 8rem))",
+          backgroundImage:
+            "linear-gradient(115deg, #1a1a1a 0%, #3a3a3a 20%, #c8c8c8 45%, #f5f5f5 50%, #c8c8c8 55%, #3a3a3a 80%, #1a1a1a 100%)",
+          backgroundSize: "250% 250%",
         }}
-      >
-        <h1
-          className="whitespace-nowrap font-serif font-black uppercase leading-none tracking-tight"
-          style={{ fontSize: "clamp(6rem, 15vw, 16rem)" }}
-        >
-          ACAB
-        </h1>
+      />
 
-        <div className="flex items-center gap-5 md:gap-8">
-          <div className="h-px w-20 bg-white/50 md:w-32" />
-          <span
-            className="whitespace-nowrap font-sans font-black leading-none"
-            style={{
-              fontSize: "clamp(2.5rem, 8vw, 8rem)",
-              letterSpacing: "0.02em",
-            }}
+      {/* Layer 2: Video — überdeckt den Gradient wenn geladen. */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full object-cover"
+      >
+        <source src="/videos/hero.mp4" type="video/mp4" />
+      </video>
+
+      {/* Layer 3: Multiply-Knockout — schwarzer Overlay mit weisser Schrift.
+          Schwarz × Video = Schwarz (Video unsichtbar), Weiss × Video = Video
+          (sichtbar nur durch die Buchstaben). */}
+      <div className="absolute inset-0 flex items-center justify-center bg-black px-6 mix-blend-multiply">
+        <div
+          ref={logoBlockRef}
+          className="flex flex-col items-center gap-3"
+          style={{
+            paddingBottom:
+              "calc(clamp(6rem, 15vw, 16rem) - clamp(2.5rem, 8vw, 8rem))",
+          }}
+        >
+          <h1
+            className="whitespace-nowrap font-serif font-black uppercase leading-none tracking-tight text-white"
+            style={{ fontSize: "clamp(6rem, 15vw, 16rem)" }}
           >
-            All Car&apos;s All Bike&apos;s
-          </span>
-          <div className="h-px w-20 bg-white/50 md:w-32" />
+            ACAB
+          </h1>
+
+          <div className="flex items-center gap-5 md:gap-8">
+            <div className="h-px w-20 bg-white md:w-32" />
+            <span
+              className="whitespace-nowrap font-sans font-black leading-none text-white"
+              style={{
+                fontSize: "clamp(2.5rem, 8vw, 8rem)",
+                letterSpacing: "0.02em",
+              }}
+            >
+              All Car&apos;s All Bike&apos;s
+            </span>
+            <div className="h-px w-20 bg-white md:w-32" />
+          </div>
         </div>
       </div>
 
-      {/* Services: einzeilig, am unteren Rand. */}
+      {/* Services: einzeilig, am unteren Rand. Ausserhalb des Multiply-Blends. */}
       <ul
         ref={servicesRef}
         className="absolute left-1/2 flex -translate-x-1/2 flex-nowrap items-center whitespace-nowrap px-4 uppercase text-white/70"
