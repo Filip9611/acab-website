@@ -15,7 +15,7 @@ const SERVICES = [
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
   const logoBlockRef = useRef<HTMLDivElement>(null);
-  const servicesRef = useRef<HTMLUListElement>(null);
+  const servicesRef = useRef<HTMLDivElement>(null);
   const chevronRef = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
@@ -82,7 +82,7 @@ export default function Hero() {
         }}
       />
 
-      {/* Layer 2: Video — nur auf Tablet/Desktop (spart Mobile-Bandbreite). */}
+      {/* Layer 2: Video — auf allen Breakpoints als Hintergrund. */}
       <video
         autoPlay
         muted
@@ -90,14 +90,15 @@ export default function Hero() {
         playsInline
         preload="metadata"
         aria-hidden="true"
-        className="absolute inset-0 hidden h-full w-full object-cover object-[center_85%] brightness-[1.3] contrast-[1.2] md:block"
+        className="absolute inset-0 h-full w-full object-cover object-[center_85%] brightness-[1.3] contrast-[1.2]"
       >
         <source src="/videos/hero.mp4" type="video/mp4" />
       </video>
 
       {/* Layer 3: Auf Desktop Multiply-Knockout (Video sichtbar durch Text).
-          Auf Mobile: solides Schwarz (Text als solide Weiss auf schwarz). */}
-      <div className="absolute inset-0 flex items-center justify-center bg-black px-6 md:mix-blend-multiply">
+          Auf Mobile: halbtransparenter Schwarz-Overlay — Video bleibt sichtbar,
+          weisser Text bleibt lesbar. */}
+      <div className="absolute inset-0 flex items-center justify-center bg-black/60 px-6 md:bg-black md:mix-blend-multiply">
         <div
           ref={logoBlockRef}
           className="flex flex-col items-center gap-3"
@@ -130,30 +131,59 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Services: mobile wrap auf mehrere Zeilen, Desktop einzeilig. */}
-      <ul
+      {/* Services: Mobile = endlose Marquee-Laufschrift, Desktop = statische Zeile. */}
+      <div
         ref={servicesRef}
-        className="absolute left-1/2 flex max-w-[90vw] -translate-x-1/2 flex-wrap items-center justify-center gap-x-2 gap-y-1 px-4 uppercase text-white/70 md:max-w-none md:flex-nowrap md:gap-x-0 md:whitespace-nowrap"
-        style={{
-          bottom: "80px",
-          fontSize: "clamp(0.55rem, 1.2vw, 0.85rem)",
-          letterSpacing: "0.15em",
-        }}
+        className="pointer-events-none absolute inset-x-0"
+        style={{ bottom: "80px" }}
       >
-        {SERVICES.map((service, i) => (
-          <li key={service} className="flex items-center">
-            <span className="whitespace-nowrap">{service}</span>
-            {i < SERVICES.length - 1 && (
+        {/* Mobile: horizontal scrollende Laufschrift (rechts → links) */}
+        <div className="overflow-hidden md:hidden">
+          <div
+            className="flex w-max animate-marquee items-center uppercase text-white/70"
+            style={{
+              fontSize: "clamp(0.7rem, 2.2vw, 0.85rem)",
+              letterSpacing: "0.2em",
+            }}
+          >
+            {/* Doppelte Kopie für nahtlosen Loop (translate -50% = ein Set) */}
+            {[...SERVICES, ...SERVICES].map((service, i) => (
               <span
-                aria-hidden="true"
-                className="ml-2 hidden text-white/30 md:ml-3 md:inline md:mr-3"
+                key={i}
+                className="flex shrink-0 items-center whitespace-nowrap"
               >
-                ·
+                <span>{service}</span>
+                <span
+                  aria-hidden="true"
+                  className="mx-6 text-white/30"
+                >
+                  ·
+                </span>
               </span>
-            )}
-          </li>
-        ))}
-      </ul>
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop: statische, zentrierte Zeile mit Trennpunkten */}
+        <ul
+          className="mx-auto hidden max-w-[90vw] flex-nowrap items-center justify-center whitespace-nowrap px-4 uppercase text-white/70 md:flex"
+          style={{
+            fontSize: "clamp(0.55rem, 1.2vw, 0.85rem)",
+            letterSpacing: "0.15em",
+          }}
+        >
+          {SERVICES.map((service, i) => (
+            <li key={service} className="flex items-center">
+              <span>{service}</span>
+              {i < SERVICES.length - 1 && (
+                <span aria-hidden="true" className="mx-3 text-white/30">
+                  ·
+                </span>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
 
       {/* Chevron: direkt darunter. */}
       <div

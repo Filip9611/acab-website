@@ -12,6 +12,16 @@
   --font-serif: var(--font-playfair);
   --animate-shimmer: shimmer 8s ease-in-out infinite;
   --animate-chevron: chevron 1.6s ease-in-out infinite;
+  --animate-marquee: marquee 25s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @keyframes shimmer {
