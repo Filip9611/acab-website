@@ -30,7 +30,7 @@ export default function Header() {
             <li key={item.href}>
               <a
                 href={item.href}
-                className="transition-colors hover:text-white"
+                className="transition-colors hover:text-[#B91C1C]"
               >
                 {item.label}
               </a>

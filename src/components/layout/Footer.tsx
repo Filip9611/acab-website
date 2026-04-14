@@ -20,23 +20,9 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative overflow-hidden border-t border-white/10 bg-black">
-      {/* Large wordmark */}
-      <div className="mx-auto max-w-7xl px-6 pt-24 md:pt-32">
-        <div className="pointer-events-none select-none overflow-hidden">
-          <div
-            className="whitespace-nowrap font-serif text-[24vw] font-black uppercase leading-none tracking-tight text-transparent md:text-[22vw]"
-            style={{
-              WebkitTextStroke: "1px rgba(255,255,255,0.12)",
-            }}
-          >
-            All Cars · All Bikes
-          </div>
-        </div>
-      </div>
-
+    <footer className="relative overflow-x-clip border-t border-white/10 bg-black">
       {/* Main grid */}
-      <div className="mx-auto max-w-7xl px-6 pb-16 pt-16 md:pb-20">
+      <div className="mx-auto max-w-7xl px-6 pb-16 pt-24 md:pb-20 md:pt-32">
         <div className="grid gap-12 md:grid-cols-12">
           {/* Brand */}
           <div className="md:col-span-4">
@@ -54,7 +40,7 @@ export default function Footer() {
             <div className="mt-8 flex items-center gap-3">
               <div className="h-px w-6 bg-white/40" />
               <span className="font-sans text-[10px] uppercase tracking-[0.35em] text-white/50">
-                Seit 2020 · Malters LU
+                Malters · Kanton Luzern
               </span>
             </div>
           </div>
@@ -140,7 +126,7 @@ export default function Footer() {
 
             <a
               href="#contact"
-              className="group mt-8 inline-flex items-center gap-3 border border-white/30 px-5 py-3 font-sans text-[10px] uppercase tracking-[0.3em] text-white transition-all duration-300 hover:border-white hover:bg-white hover:text-black"
+              className="group mt-8 inline-flex items-center gap-3 border border-[#B91C1C] bg-[#B91C1C] px-5 py-3 font-sans text-[10px] uppercase tracking-[0.3em] text-white transition-all duration-300 hover:border-[#a01919] hover:bg-[#a01919]"
             >
               Anfrage stellen
               <ArrowUpRight

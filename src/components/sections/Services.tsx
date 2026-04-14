@@ -106,16 +106,8 @@ export default function Services() {
       <div className="mx-auto max-w-7xl">
         {/* Section header */}
         <div ref={headerRef} className="mb-20 md:mb-28">
-          <div className="mb-6 flex items-center gap-4">
-            <div className="h-px w-12 bg-white/40" />
-            <span className="font-sans text-[11px] uppercase tracking-[0.4em] text-white/60">
-              Leistungen · 01
-            </span>
-          </div>
-          <h2 className="font-serif text-5xl font-black uppercase leading-[0.9] tracking-tight text-white md:text-7xl lg:text-8xl">
-            Was wir
-            <br />
-            <span className="text-white/30">für Sie tun</span>
+          <h2 className="font-serif text-5xl font-black uppercase leading-[1] tracking-tight text-white md:text-7xl lg:text-8xl">
+            Was wir für Sie tun
           </h2>
           <p className="mt-8 max-w-xl font-sans text-base leading-relaxed text-white/60 md:text-lg">
             Sechs Disziplinen. Eine Werkstatt. Fachgerechte Arbeit an Autos und
@@ -127,12 +119,12 @@ export default function Services() {
         {/* Service grid */}
         <div
           ref={gridRef}
-          className="grid grid-cols-1 gap-px bg-white/10 md:grid-cols-2 lg:grid-cols-3"
+          className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5 lg:grid-cols-3 lg:gap-6"
         >
           {SERVICES.map(({ number, icon: Icon, title, description }) => (
             <article
               key={number}
-              className="group relative flex min-h-[340px] flex-col justify-between overflow-hidden bg-[#0A0A0A] p-8 transition-colors duration-500 hover:bg-[#141414] md:p-10"
+              className="group relative flex min-h-[320px] flex-col justify-between overflow-hidden border border-white/10 bg-[#0A0A0A] p-10 transition-colors duration-500 hover:bg-[#141414] md:p-14"
             >
               {/* Watermark number */}
               <span
@@ -142,14 +134,11 @@ export default function Services() {
                 {number}
               </span>
 
-              <div className="relative z-10 flex items-start justify-between">
+              <div className="relative z-10">
                 <Icon
                   className="h-10 w-10 text-white transition-transform duration-500 group-hover:scale-110"
                   strokeWidth={1.25}
                 />
-                <span className="font-sans text-[10px] uppercase tracking-[0.35em] text-white/40">
-                  {number}
-                </span>
               </div>
 
               <div className="relative z-10 mt-10">
@@ -159,13 +148,6 @@ export default function Services() {
                 <p className="mt-4 font-sans text-sm leading-relaxed text-white/60 md:text-base">
                   {description}
                 </p>
-
-                <div className="mt-6 flex items-center gap-3">
-                  <div className="h-px w-6 bg-white/30 transition-all duration-500 group-hover:w-16 group-hover:bg-white" />
-                  <span className="font-sans text-[10px] uppercase tracking-[0.4em] text-white/40 transition-colors duration-500 group-hover:text-white/80">
-                    Mehr erfahren
-                  </span>
-                </div>
               </div>
             </article>
           ))}

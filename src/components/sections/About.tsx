@@ -68,24 +68,14 @@ export default function About() {
     <section
       id="about"
       ref={sectionRef}
-      className="relative overflow-hidden bg-black px-6 py-28 md:py-40"
+      className="relative overflow-x-clip bg-black px-6 py-28 md:py-40"
     >
       <div className="mx-auto max-w-7xl">
-        {/* Label */}
-        <div className="mb-16 flex items-center gap-4">
-          <div className="h-px w-12 bg-white/40" />
-          <span className="font-sans text-[11px] uppercase tracking-[0.4em] text-white/60">
-            Über uns · 02
-          </span>
-        </div>
-
         <div className="grid gap-12 md:grid-cols-12 md:gap-16">
           {/* Left: Text */}
           <div ref={leftRef} className="md:col-span-7">
-            <h2 className="font-serif text-5xl font-black uppercase leading-[0.9] tracking-tight text-white md:text-7xl lg:text-8xl">
-              Ihre Werkstatt
-              <br />
-              <span className="text-white/30">in Malters.</span>
+            <h2 className="font-serif text-5xl font-black uppercase leading-[1] tracking-tight text-white md:text-7xl lg:text-8xl">
+              Ihre Werkstatt in Malters.
             </h2>
 
             <div className="mt-10 max-w-xl space-y-6">

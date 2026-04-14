@@ -75,21 +75,13 @@ export default function Gallery() {
     <section
       id="gallery"
       ref={sectionRef}
-      className="relative overflow-hidden bg-[#0A0A0A] px-6 py-28 md:py-40"
+      className="relative overflow-x-clip bg-[#0A0A0A] px-6 py-28 md:py-40"
     >
       <div className="mx-auto max-w-7xl">
         <div ref={headerRef} className="mb-20 md:mb-28">
-          <div className="mb-6 flex items-center gap-4">
-            <div className="h-px w-12 bg-white/40" />
-            <span className="font-sans text-[11px] uppercase tracking-[0.4em] text-white/60">
-              Galerie · 03
-            </span>
-          </div>
           <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
-            <h2 className="font-serif text-5xl font-black uppercase leading-[0.9] tracking-tight text-white md:text-7xl lg:text-8xl">
+            <h2 className="font-serif text-5xl font-black uppercase leading-[1] tracking-tight text-white md:text-7xl lg:text-8xl">
               Einblicke
-              <br />
-              <span className="text-white/30">in die Werkstatt</span>
             </h2>
             <p className="max-w-md font-sans text-sm leading-relaxed text-white/50 md:text-base">
               Ein Blick hinter die Kulissen — vom laufenden Projekt bis zum
@@ -151,10 +143,10 @@ export default function Gallery() {
           <div className="h-px flex-1 bg-white/10" />
           <a
             href="#contact"
-            className="group flex items-center gap-3 font-sans text-[10px] uppercase tracking-[0.4em] text-white/60 transition-colors hover:text-white"
+            className="group flex items-center gap-3 font-sans text-[10px] uppercase tracking-[0.4em] text-white/60 transition-colors hover:text-[#B91C1C]"
           >
             Projekt anfragen
-            <span className="block h-px w-8 bg-white/40 transition-all duration-500 group-hover:w-16 group-hover:bg-white" />
+            <span className="block h-px w-8 bg-white/40 transition-all duration-500 group-hover:w-16 group-hover:bg-[#B91C1C]" />
           </a>
           <div className="h-px flex-1 bg-white/10" />
         </div>
