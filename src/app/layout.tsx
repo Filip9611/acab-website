@@ -82,6 +82,8 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
   verification: {
     // google: "GOOGLE_VERIFICATION_TOKEN",  // TODO: Google Search Console-Token eintragen

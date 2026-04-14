@@ -111,6 +111,7 @@ export default function Hero() {
             className="whitespace-nowrap font-serif font-black uppercase leading-none tracking-tight text-white"
             style={{ fontSize: "clamp(6rem, 15vw, 16rem)" }}
           >
+            <span className="sr-only">Autowerkstatt in Malters – </span>
             ACAB
           </h1>
 
