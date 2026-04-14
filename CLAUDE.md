@@ -38,3 +38,9 @@ Mo-Fr: 09:00-18:30 | Sa+So: Geschlossen
 - Accessibility: WCAG 2.1 AA
 - Sprache: Deutsch (Schweiz)
 - Video: WebM + MP4 Fallback, lazy-loaded, autoplay muted loop
+
+## Tools & Skills
+- 21st.dev Magic MCP: Nutze /ui und 21st_magic_component_builder für hochwertige UI-Komponenten
+- GSAP Master MCP: Nutze gsap-master für produktionsreifen Animations-Code (ScrollTrigger, SplitText, MorphSVG)
+- UI/UX Pro Max Skill: Generiere Design-Systeme basierend auf Branche und Stil
+- Nutze diese Tools AKTIV bei jeder Komponente — keine generischen Lösungen
