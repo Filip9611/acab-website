@@ -5,11 +5,11 @@ import { gsap } from "@/lib/animations";
 
 const SERVICES = [
   "Mechanik",
-  "Carrosserie",
-  "Lackierarbeiten",
+  "Spenglerei & Lack",
   "Aufbereitung",
   "KFZ-Service",
   "MFK-Vorbereitung",
+  "Autohandel",
 ];
 
 export default function Hero() {
@@ -29,33 +29,35 @@ export default function Hero() {
     const headerBg = document.querySelector<HTMLElement>("#header-bg");
 
     const ctx = gsap.context(() => {
-      // Eine Timeline, ein ScrollTrigger, fünf parallele Opacity-Tweens.
+      // Eine Timeline, ein ScrollTrigger. Range: volle Hero-Höhe.
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: heroRef.current,
           start: "top top",
-          end: "60% top",
+          end: "bottom top",
           scrub: true,
         },
       });
 
-      // Hero-Inhalte: Logo-Block + Services + Chevron faden aus (1 → 0).
+      // Hero-Inhalte: Logo-Block + Services + Chevron faden aus (1 → 0)
+      // in den ersten 70% des Scroll-Bereichs (duration 0.7 auf Timeline).
       tl.to(
         [
           logoBlockRef.current,
           servicesRef.current,
           chevronRef.current,
         ],
-        { opacity: 0, ease: "none" },
+        { opacity: 0, ease: "none", duration: 0.7 },
         0,
       );
 
-      // Header: ACAB-Logo + Background faden ein (0 → 1).
+      // Header: ACAB-Logo + Background faden ein (0 → 1) in den letzten 30%
+      // (Position 0.7, duration 0.3 → bis 100%).
       if (headerLogo && headerBg) {
         tl.to(
           [headerLogo, headerBg],
-          { opacity: 1, ease: "none" },
-          0,
+          { opacity: 1, ease: "none", duration: 0.3 },
+          0.7,
         );
       }
     }, heroRef);
@@ -65,6 +67,7 @@ export default function Hero() {
 
   return (
     <section
+      id="hero"
       ref={heroRef}
       className="relative h-screen w-full overflow-hidden bg-black"
     >
@@ -85,7 +88,7 @@ export default function Hero() {
         muted
         loop
         playsInline
-        preload="auto"
+        preload="metadata"
         aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover object-[center_85%] brightness-[1.3] contrast-[1.2]"
       >

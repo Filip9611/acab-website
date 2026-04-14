@@ -1,4 +1,4 @@
-import { MapPin, Phone, Mail, ArrowUpRight } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, ArrowUpRight } from "lucide-react";
 
 const QUICK_LINKS = [
   { label: "Services", href: "#services" },
@@ -9,11 +9,11 @@ const QUICK_LINKS = [
 
 const SERVICES = [
   "Mechanik",
-  "Carrosserie",
-  "Lackierarbeiten",
+  "Spenglerei & Lack",
   "Aufbereitung",
   "KFZ-Service",
   "MFK-Vorbereitung",
+  "Autohandel",
 ];
 
 export default function Footer() {
@@ -30,7 +30,7 @@ export default function Footer() {
               ACAB
             </div>
             <div className="mt-2 font-sans text-[10px] uppercase tracking-[0.4em] text-white/50">
-              All Cars · All Bikes
+              All Car&apos;s · All Bike&apos;s
             </div>
             <p className="mt-6 max-w-xs font-sans text-sm leading-relaxed text-white/50">
               Ihre Autowerkstatt in Malters. Fachgerechte Arbeit an Autos und
@@ -122,6 +122,17 @@ export default function Footer() {
                   <span className="truncate">acab.garage@hotmail.com</span>
                 </a>
               </li>
+              <li className="flex items-start gap-3 pt-2 font-sans text-sm text-white/70">
+                <Clock
+                  className="mt-0.5 h-4 w-4 shrink-0 text-white/60"
+                  strokeWidth={1.5}
+                />
+                <span>
+                  Mo–Fr 09:00–18:30
+                  <br />
+                  <span className="text-white/50">Sa &amp; So geschlossen</span>
+                </span>
+              </li>
             </ul>
 
             <a
@@ -142,7 +153,8 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col gap-3 px-6 py-6 font-sans text-[10px] uppercase tracking-[0.3em] text-white/40 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            © {year} ACAB All Cars All Bikes GmbH · Alle Rechte vorbehalten
+            © {year} ACAB All Car&apos;s All Bike&apos;s GmbH · Alle Rechte
+            vorbehalten
           </div>
           <div className="flex items-center gap-4">
             <span>Malters · Schweiz</span>

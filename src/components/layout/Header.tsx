@@ -21,7 +21,7 @@ export default function Header() {
           href="#hero"
           id="header-logo"
           className="font-serif font-black uppercase tracking-tight text-white opacity-0"
-          style={{ fontSize: "24px", letterSpacing: "0.02em" }}
+          style={{ fontSize: "32px", letterSpacing: "0.02em" }}
         >
           ACAB
         </a>

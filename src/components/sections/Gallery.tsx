@@ -6,10 +6,10 @@ import { gsap } from "@/lib/animations";
 const ITEMS = [
   { label: "Werkstatt", aspect: "aspect-[4/5]" },
   { label: "Detail · Motor", aspect: "aspect-[4/3]" },
-  { label: "Lackierung", aspect: "aspect-[4/3]" },
+  { label: "Lack", aspect: "aspect-[4/3]" },
   { label: "Motorrad", aspect: "aspect-[4/5]" },
-  { label: "Carrosserie", aspect: "aspect-[4/3]" },
-  { label: "Fuhrpark", aspect: "aspect-[4/5]" },
+  { label: "Spenglerei", aspect: "aspect-[4/3]" },
+  { label: "Autohandel", aspect: "aspect-[4/5]" },
 ];
 
 export default function Gallery() {

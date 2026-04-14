@@ -14,7 +14,7 @@ Domain: allcarsallbikes.ch
 - Google: 5.0★ (1 Rezension)
 
 ## Services
-Mechanik, Carrosserie, Lackierarbeiten, Aufbereitung, KFZ-Service, MFK-Vorbereitung
+Mechanik, Spenglerei & Lack, Aufbereitung, KFZ-Service, MFK-Vorbereitung, Autohandel
 
 ## Öffnungszeiten
 Mo-Fr: 09:00-18:30 | Sa+So: Geschlossen

@@ -77,3 +77,37 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Keyboard-focus-Indicator für alle interaktiven Elemente (nur bei Tastatur). */
+*:focus {
+  outline: none;
+}
+*:focus-visible {
+  outline: 2px solid #b91c1c;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Skip-to-Content Link: versteckt bis er via Tab fokussiert wird. */
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  transform: translateY(-200%);
+  background: #b91c1c;
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: transform 0.2s ease-out;
+}
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}

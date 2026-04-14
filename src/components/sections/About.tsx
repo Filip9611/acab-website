@@ -83,9 +83,10 @@ export default function About() {
             <div className="mt-10 max-w-xl space-y-6">
               <p className="font-sans text-base leading-relaxed text-white/70 md:text-lg">
                 <span className="font-serif text-white">ACAB</span> steht für{" "}
-                <span className="text-white">All Cars All Bikes</span>.
+                <span className="text-white">All Car&apos;s All Bike&apos;s</span>.
                 Fachgerechte Arbeit an Autos und Motorrädern. Mechanik,
-                Carrosserie, Spenglerarbeiten und Lackierung aus einer Hand.
+                Spenglerei &amp; Lack, Aufbereitung, KFZ-Service,
+                MFK-Vorbereitung und Autohandel. Alles aus einer Hand.
               </p>
               <p className="font-sans text-base leading-relaxed text-white/70 md:text-lg">
                 Qualität, Sicherheit und Zuverlässigkeit. Von der ersten
@@ -114,11 +115,13 @@ export default function About() {
             className="relative md:col-span-5"
           >
             <figure className="group relative aspect-[4/5] overflow-hidden border border-white/10 bg-white/[0.02]">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="font-sans text-[10px] uppercase tracking-[0.4em] text-white/25">
-                  Foto · Werkstatt
-                </span>
-              </div>
+              <img
+                src="/images/werkstatt.webp"
+                alt="Innenansicht der ACAB Werkstatt in Malters"
+                className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                loading="lazy"
+                decoding="async"
+              />
 
               {/* Corner accents */}
               <span

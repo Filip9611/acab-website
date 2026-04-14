@@ -18,10 +18,9 @@ const inter = Inter({
 });
 
 const SITE_URL = "https://allcarsallbikes.ch";
-const SITE_TITLE =
-  "ACAB Garage Malters | All Cars All Bikes — Mechanik, Carrosserie & Lackierarbeiten";
+const SITE_TITLE = "ACAB Garage Malters";
 const SITE_DESCRIPTION =
-  "Ihre Autowerkstatt in Malters LU. Mechanik, Carrosserie, Lackierarbeiten, Aufbereitung, KFZ-Service und MFK-Vorbereitung für Autos und Motorräder. +41 79 869 13 04";
+  "Ihre Autowerkstatt in Malters. All Car's All Bike's Garage für Mechanik, Spenglerei & Lack, Aufbereitung, KFZ-Service und Autohandel.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -30,17 +29,21 @@ export const metadata: Metadata = {
   keywords: [
     "Autowerkstatt Malters",
     "Garage Malters",
+    "Spenglerei Malters",
     "Carrosserie Malters",
     "Lackierarbeiten Luzern",
+    "Autohandel Malters",
+    "Occasionen Luzern",
     "Motorrad Werkstatt Luzern",
     "MFK Vorbereitung",
     "KFZ-Service",
+    "All Car's All Bike's",
     "All Cars All Bikes",
     "ACAB Garage",
   ],
-  authors: [{ name: "ACAB All Cars All Bikes GmbH" }],
-  creator: "ACAB All Cars All Bikes GmbH",
-  publisher: "ACAB All Cars All Bikes GmbH",
+  authors: [{ name: "ACAB All Car's All Bike's GmbH" }],
+  creator: "ACAB All Car's All Bike's GmbH",
+  publisher: "ACAB All Car's All Bike's GmbH",
   alternates: {
     canonical: "/",
   },
@@ -48,7 +51,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "de_CH",
     url: SITE_URL,
-    siteName: "ACAB All Cars All Bikes",
+    siteName: "ACAB All Car's All Bike's",
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     images: [
@@ -56,7 +59,7 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "ACAB All Cars All Bikes Garage Malters",
+        alt: "ACAB All Car's All Bike's Garage Malters",
       },
     ],
   },
@@ -89,7 +92,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "AutoRepair",
   "@id": `${SITE_URL}/#organization`,
-  name: "ACAB All Cars All Bikes GmbH",
+  name: "ACAB All Car's All Bike's GmbH",
   alternateName: "ACAB Garage",
   description: SITE_DESCRIPTION,
   url: SITE_URL,
@@ -147,11 +150,7 @@ const jsonLd = {
       },
       {
         "@type": "Offer",
-        itemOffered: { "@type": "Service", name: "Carrosserie" },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: { "@type": "Service", name: "Lackierarbeiten" },
+        itemOffered: { "@type": "Service", name: "Spenglerei & Lack" },
       },
       {
         "@type": "Offer",
@@ -164,6 +163,10 @@ const jsonLd = {
       {
         "@type": "Offer",
         itemOffered: { "@type": "Service", name: "MFK-Vorbereitung" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Autohandel" },
       },
     ],
   },
@@ -182,8 +185,11 @@ export default function RootLayout({
   return (
     <html lang="de-CH" className={`${playfair.variable} ${inter.variable}`}>
       <body className="bg-black text-white antialiased">
+        <a href="#main" className="skip-link">
+          Zum Inhalt springen
+        </a>
         <Header />
-        <main>{children}</main>
+        <main id="main">{children}</main>
         <Footer />
         <script
           type="application/ld+json"
