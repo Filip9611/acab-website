@@ -79,7 +79,7 @@ export default function Hero() {
         playsInline
         preload="auto"
         aria-hidden="true"
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute inset-0 h-full w-full object-cover object-[center_85%] brightness-[1.3] contrast-[1.2]"
       >
         <source src="/videos/hero.mp4" type="video/mp4" />
       </video>
