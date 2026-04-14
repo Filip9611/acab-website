@@ -95,10 +95,10 @@ export default function Hero() {
         <source src="/videos/hero.mp4" type="video/mp4" />
       </video>
 
-      {/* Layer 3: Auf Desktop Multiply-Knockout (Video sichtbar durch Text).
-          Auf Mobile: halbtransparenter Schwarz-Overlay — Video bleibt sichtbar,
-          weisser Text bleibt lesbar. */}
-      <div className="absolute inset-0 flex items-center justify-center bg-black/60 px-6 md:bg-black md:mix-blend-multiply">
+      {/* Layer 3: Multiply-Knockout auf allen Breakpoints — schwarzer Overlay
+          mit weisser Schrift. Schwarz × Video = Schwarz, Weiss × Video = Video
+          (sichtbar nur durch die Buchstaben). */}
+      <div className="absolute inset-0 flex items-center justify-center bg-black px-6 mix-blend-multiply">
         <div
           ref={logoBlockRef}
           className="flex flex-col items-center gap-3"
