@@ -1,74 +1,174 @@
-import { MapPin, Phone, Mail } from "lucide-react";
+import { MapPin, Phone, Mail, ArrowUpRight } from "lucide-react";
+
+const QUICK_LINKS = [
+  { label: "Services", href: "#services" },
+  { label: "Über uns", href: "#about" },
+  { label: "Galerie", href: "#gallery" },
+  { label: "Kontakt", href: "#contact" },
+];
+
+const SERVICES = [
+  "Mechanik",
+  "Carrosserie",
+  "Lackierarbeiten",
+  "Aufbereitung",
+  "KFZ-Service",
+  "MFK-Vorbereitung",
+];
 
 export default function Footer() {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="border-t border-white/10 bg-black px-6 py-16">
-      <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-3 md:gap-12">
-        <div>
-          <div className="font-serif text-3xl font-black uppercase tracking-tight text-white">
-            ACAB
-          </div>
-          <div className="mt-2 text-[10px] uppercase tracking-[0.35em] text-white/40">
+    <footer className="relative overflow-hidden border-t border-white/10 bg-black">
+      {/* Large wordmark */}
+      <div className="mx-auto max-w-7xl px-6 pt-24 md:pt-32">
+        <div className="pointer-events-none select-none overflow-hidden">
+          <div
+            className="whitespace-nowrap font-serif text-[24vw] font-black uppercase leading-none tracking-tight text-transparent md:text-[22vw]"
+            style={{
+              WebkitTextStroke: "1px rgba(255,255,255,0.12)",
+            }}
+          >
             All Cars · All Bikes
           </div>
-          <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/50">
-            Ihre Werkstatt in Malters. Mechanik, Carrosserie und Lackierung —
-            für Autos und Motorräder.
-          </p>
-        </div>
-
-        <div>
-          <div className="mb-4 text-xs uppercase tracking-[0.25em] text-white/50">
-            Kontakt
-          </div>
-          <ul className="flex flex-col gap-3 text-sm text-white/70">
-            <li className="flex items-start gap-3">
-              <MapPin
-                className="mt-0.5 h-4 w-4 shrink-0"
-                strokeWidth={1.5}
-              />
-              <span>Eistrasse 3, 6102 Malters</span>
-            </li>
-            <li>
-              <a
-                href="tel:+41798691304"
-                className="flex items-center gap-3 transition-colors hover:text-white"
-              >
-                <Phone className="h-4 w-4 shrink-0" strokeWidth={1.5} />
-                +41 79 869 13 04
-              </a>
-            </li>
-            <li>
-              <a
-                href="mailto:acab.garage@hotmail.com"
-                className="flex items-center gap-3 transition-colors hover:text-white"
-              >
-                <Mail className="h-4 w-4 shrink-0" strokeWidth={1.5} />
-                acab.garage@hotmail.com
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div>
-          <div className="mb-4 text-xs uppercase tracking-[0.25em] text-white/50">
-            Öffnungszeiten
-          </div>
-          <dl className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 text-sm">
-            <dt className="text-white/60">Mo – Fr</dt>
-            <dd className="text-white/90">09:00 – 18:30</dd>
-            <dt className="text-white/60">Sa + So</dt>
-            <dd className="text-white/40">Geschlossen</dd>
-          </dl>
         </div>
       </div>
 
-      <div className="mx-auto mt-14 flex max-w-7xl flex-col gap-2 border-t border-white/10 pt-6 text-xs text-white/40 sm:flex-row sm:justify-between">
-        <div>
-          © {new Date().getFullYear()} ACAB All Cars All Bikes GmbH. Alle Rechte
-          vorbehalten.
+      {/* Main grid */}
+      <div className="mx-auto max-w-7xl px-6 pb-16 pt-16 md:pb-20">
+        <div className="grid gap-12 md:grid-cols-12">
+          {/* Brand */}
+          <div className="md:col-span-4">
+            <div className="font-serif text-4xl font-black uppercase tracking-tight text-white md:text-5xl">
+              ACAB
+            </div>
+            <div className="mt-2 font-sans text-[10px] uppercase tracking-[0.4em] text-white/50">
+              All Cars · All Bikes
+            </div>
+            <p className="mt-6 max-w-xs font-sans text-sm leading-relaxed text-white/50">
+              Ihre Autowerkstatt in Malters. Fachgerechte Arbeit an Autos und
+              Motorrädern — aus einer Hand.
+            </p>
+
+            <div className="mt-8 flex items-center gap-3">
+              <div className="h-px w-6 bg-white/40" />
+              <span className="font-sans text-[10px] uppercase tracking-[0.35em] text-white/50">
+                Seit 2020 · Malters LU
+              </span>
+            </div>
+          </div>
+
+          {/* Navigation */}
+          <div className="md:col-span-2">
+            <div className="mb-5 font-sans text-[10px] uppercase tracking-[0.35em] text-white/40">
+              Seiten
+            </div>
+            <ul className="space-y-3">
+              {QUICK_LINKS.map(({ label, href }) => (
+                <li key={href}>
+                  <a
+                    href={href}
+                    className="group flex items-center gap-2 font-sans text-sm text-white/70 transition-colors hover:text-white"
+                  >
+                    <span className="h-px w-0 bg-white transition-all duration-300 group-hover:w-3" />
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Services */}
+          <div className="md:col-span-3">
+            <div className="mb-5 font-sans text-[10px] uppercase tracking-[0.35em] text-white/40">
+              Leistungen
+            </div>
+            <ul className="space-y-3">
+              {SERVICES.map((service) => (
+                <li
+                  key={service}
+                  className="font-sans text-sm text-white/70"
+                >
+                  {service}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div className="md:col-span-3">
+            <div className="mb-5 font-sans text-[10px] uppercase tracking-[0.35em] text-white/40">
+              Kontakt
+            </div>
+            <ul className="space-y-4">
+              <li className="flex items-start gap-3 font-sans text-sm text-white/70">
+                <MapPin
+                  className="mt-0.5 h-4 w-4 shrink-0 text-white/60"
+                  strokeWidth={1.5}
+                />
+                <span>
+                  Eistrasse 3<br />
+                  6102 Malters
+                </span>
+              </li>
+              <li>
+                <a
+                  href="tel:+41798691304"
+                  className="group flex items-center gap-3 font-sans text-sm text-white/70 transition-colors hover:text-white"
+                >
+                  <Phone
+                    className="h-4 w-4 shrink-0 text-white/60 transition-colors group-hover:text-white"
+                    strokeWidth={1.5}
+                  />
+                  <span>+41 79 869 13 04</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="mailto:acab.garage@hotmail.com"
+                  className="group flex items-center gap-3 font-sans text-sm text-white/70 transition-colors hover:text-white"
+                >
+                  <Mail
+                    className="h-4 w-4 shrink-0 text-white/60 transition-colors group-hover:text-white"
+                    strokeWidth={1.5}
+                  />
+                  <span className="truncate">acab.garage@hotmail.com</span>
+                </a>
+              </li>
+            </ul>
+
+            <a
+              href="#contact"
+              className="group mt-8 inline-flex items-center gap-3 border border-white/30 px-5 py-3 font-sans text-[10px] uppercase tracking-[0.3em] text-white transition-all duration-300 hover:border-white hover:bg-white hover:text-black"
+            >
+              Anfrage stellen
+              <ArrowUpRight
+                className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                strokeWidth={1.5}
+              />
+            </a>
+          </div>
         </div>
-        <div>Malters · Schweiz</div>
+      </div>
+
+      {/* Bottom bar */}
+      <div className="border-t border-white/10">
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-6 py-6 font-sans text-[10px] uppercase tracking-[0.3em] text-white/40 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            © {year} ACAB All Cars All Bikes GmbH · Alle Rechte vorbehalten
+          </div>
+          <div className="flex items-center gap-4">
+            <span>Malters · Schweiz</span>
+            <span className="h-3 w-px bg-white/20" />
+            <a
+              href="#hero"
+              className="transition-colors hover:text-white"
+            >
+              Nach oben ↑
+            </a>
+          </div>
+        </div>
       </div>
     </footer>
   );
