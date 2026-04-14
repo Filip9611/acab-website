@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { gsap, ScrollTrigger } from "@/lib/animations";
+import { gsap } from "@/lib/animations";
 
 const SERVICES = [
   "Mechanik",
@@ -14,8 +14,7 @@ const SERVICES = [
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
-  const blockRef = useRef<HTMLDivElement>(null);
-  const subtitleRowRef = useRef<HTMLDivElement>(null);
+  const logoBlockRef = useRef<HTMLDivElement>(null);
   const servicesRef = useRef<HTMLUListElement>(null);
   const chevronRef = useRef<SVGSVGElement>(null);
 
@@ -26,71 +25,49 @@ export default function Hero() {
     if (reduceMotion) return;
 
     const ctx = gsap.context(() => {
-      // Block morpht: von viewport-mittig (CSS) zu oben-links + scale 0.15.
-      // CSS hat translateX(-50%); GSAP liest xPercent:-50 und tweenen auf 0.
-      // transform-origin bleibt "0 0" (CSS), damit scale vom Block-Top-Left shrinkt.
-      // webkitTextFillColor: transparent → white macht Shimmer solid weiss am Ende.
-      gsap.to(blockRef.current, {
-        top: "1rem",
-        left: "1.5rem",
-        xPercent: 0,
-        scale: 0.15,
-        webkitTextFillColor: "#ffffff",
-        ease: "none",
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: heroRef.current,
           start: "top top",
-          end: "bottom top",
+          end: "60% top",
           scrub: true,
-          invalidateOnRefresh: true,
         },
       });
 
-      // Subtitle, Services, Chevron faden über die volle Scroll-Strecke.
-      gsap.to(
-        [subtitleRowRef.current, servicesRef.current, chevronRef.current],
-        {
-          opacity: 0,
-          ease: "none",
-          scrollTrigger: {
-            trigger: heroRef.current,
-            start: "top top",
-            end: "bottom top",
-            scrub: true,
-          },
-        },
+      // Hero-Inhalte (Logo-Block, Services, Chevron) faden aus.
+      tl.to(
+        [logoBlockRef.current, servicesRef.current, chevronRef.current],
+        { opacity: 0, ease: "none" },
+        0,
       );
-    }, heroRef);
 
-    const onResize = () => ScrollTrigger.refresh();
-    window.addEventListener("resize", onResize);
+      // Header-ACAB + Header-Hintergrund faden ein (Crossfade).
+      tl.to(
+        ["#header-logo", "#header-bg"],
+        { opacity: 1, ease: "none" },
+        0,
+      );
+    });
 
-    return () => {
-      window.removeEventListener("resize", onResize);
-      ctx.revert();
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
+    return () => ctx.revert();
   }, []);
 
   return (
     <section
+      id="hero"
       ref={heroRef}
-      className="relative h-screen w-full overflow-hidden bg-black"
+      className="relative flex h-screen w-full items-center justify-center overflow-hidden bg-black"
     >
-      {/* Logo-Block: fixed. CSS handled Anfangszustand — GSAP fasst es
-          erst beim Scrollen an.
-          - top berechnet so, dass Block-Bottom bei (50% - 0.375rem) liegt
-            → der 0.75rem Gap zu Subtitle zentriert sich exakt auf 50vh.
-          - Subtitle ist absolute (out-of-flow) → Block-Breite = ACAB-Breite,
-            damit GSAP-scale das Logo sauber in Top-Left shrinken kann. */}
+      {/* Logo-Block: ACAB + Subtitle in einer flex-col.
+          padding-bottom = (H_acab - H_subtitle) verschiebt den Block so,
+          dass die MITTE des Gaps zwischen den Zeilen auf 50vh liegt.
+          Normale Flow-Position, kein fixed, kein transform. */}
       <div
-        ref={blockRef}
-        className="acab-hero-title pointer-events-none fixed z-40"
+        ref={logoBlockRef}
+        className="acab-hero-title flex flex-col items-center gap-3 px-6"
         style={{
-          top: "calc(50% - 0.375rem - clamp(6rem, 15vw, 16rem))",
-          left: "50%",
-          transform: "translateX(-50%)",
-          transformOrigin: "0 0",
+          paddingBottom:
+            "calc(clamp(6rem, 15vw, 16rem) - clamp(2.5rem, 8vw, 8rem))",
         }}
       >
         <h1
@@ -100,10 +77,7 @@ export default function Hero() {
           ACAB
         </h1>
 
-        <div
-          ref={subtitleRowRef}
-          className="absolute left-1/2 top-full mt-3 flex -translate-x-1/2 items-center gap-5 md:gap-8"
-        >
+        <div className="flex items-center gap-5 md:gap-8">
           <div className="h-px w-20 bg-white/50 md:w-32" />
           <span
             className="whitespace-nowrap font-sans font-black leading-none"
