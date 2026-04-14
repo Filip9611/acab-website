@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import {
   Wrench,
   Car,
-  SprayCan,
+  CarFront,
   Sparkles,
   Cog,
   ClipboardCheck,
@@ -22,37 +22,37 @@ const SERVICES = [
   {
     number: "02",
     icon: Car,
-    title: "Carrosserie",
+    title: "Spenglerei & Lack",
     description:
-      "Spenglerarbeiten, Unfallreparaturen und Beulen. Fachgerecht instandgesetzt mit Originalteilen oder hochwertigen Alternativen.",
+      "Spenglerarbeiten, Unfallreparaturen und Beulen. Komplette Neulackierungen oder punktgenaue Ausbesserungen. Präzise Farbanpassung an den Originalton Ihres Fahrzeugs.",
   },
   {
     number: "03",
-    icon: SprayCan,
-    title: "Lackierarbeiten",
-    description:
-      "Komplette Neulackierungen oder punktgenaue Ausbesserungen. Präzise Farbanpassung an den Originalton Ihres Fahrzeugs.",
-  },
-  {
-    number: "04",
     icon: Sparkles,
     title: "Aufbereitung",
     description:
       "Innenreinigung, Politur und Nanoversiegelung. Ihr Fahrzeug wie neu, innen wie aussen auf Hochglanz gebracht.",
   },
   {
-    number: "05",
+    number: "04",
     icon: Cog,
     title: "KFZ-Service",
     description:
       "Regelmässige Wartung, Ölwechsel, Bremsen und Reifen. Alles was nötig ist, damit Sie sicher und zuverlässig unterwegs sind.",
   },
   {
-    number: "06",
+    number: "05",
     icon: ClipboardCheck,
     title: "MFK-Vorbereitung",
     description:
       "Gründliche Vorkontrolle inklusive Behebung aller Mängel. Ihr Fahrzeug startet bestens vorbereitet in die Motorfahrzeugkontrolle.",
+  },
+  {
+    number: "06",
+    icon: CarFront,
+    title: "Autohandel",
+    description:
+      "Geprüfte Occasionen und Fahrzeugvermittlung. Wir finden das passende Auto oder Motorrad für Sie. Fair, transparent und auf Ihre Wünsche abgestimmt.",
   },
 ];
 

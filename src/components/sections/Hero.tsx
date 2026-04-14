@@ -1,15 +1,15 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { gsap, ScrollTrigger } from "@/lib/animations";
+import { gsap } from "@/lib/animations";
 
 const SERVICES = [
   "Mechanik",
-  "Carrosserie",
-  "Lackierarbeiten",
+  "Spenglerei & Lack",
   "Aufbereitung",
   "KFZ-Service",
   "MFK-Vorbereitung",
+  "Autohandel",
 ];
 
 export default function Hero() {
@@ -24,39 +24,50 @@ export default function Hero() {
     ).matches;
     if (reduceMotion) return;
 
+    // Header-Elemente ausserhalb des Hero-DOM via Selector auflösen.
+    const headerLogo = document.querySelector<HTMLElement>("#header-logo");
+    const headerBg = document.querySelector<HTMLElement>("#header-bg");
+
     const ctx = gsap.context(() => {
-      gsap.to([logoBlockRef.current, servicesRef.current], {
-        opacity: 0,
-        y: -20,
-        ease: "none",
+      // Eine Timeline, ein ScrollTrigger. Range: volle Hero-Höhe.
+      const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: document.body,
-          start: 0,
-          end: () => window.innerHeight * 0.6,
+          trigger: heroRef.current,
+          start: "top top",
+          end: "bottom top",
           scrub: true,
         },
       });
 
-      gsap.to(chevronRef.current, {
-        opacity: 0,
-        ease: "none",
-        scrollTrigger: {
-          trigger: document.body,
-          start: 0,
-          end: () => window.innerHeight * 0.2,
-          scrub: true,
-        },
-      });
+      // Hero-Inhalte: Logo-Block + Services + Chevron faden aus (1 → 0)
+      // in den ersten 70% des Scroll-Bereichs (duration 0.7 auf Timeline).
+      tl.to(
+        [
+          logoBlockRef.current,
+          servicesRef.current,
+          chevronRef.current,
+        ],
+        { opacity: 0, ease: "none", duration: 0.7 },
+        0,
+      );
+
+      // Header: ACAB-Logo + Background faden ein (0 → 1) in den letzten 30%
+      // (Position 0.7, duration 0.3 → bis 100%).
+      if (headerLogo && headerBg) {
+        tl.to(
+          [headerLogo, headerBg],
+          { opacity: 1, ease: "none", duration: 0.3 },
+          0.7,
+        );
+      }
     }, heroRef);
 
-    return () => {
-      ctx.revert();
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
+    return () => ctx.revert();
   }, []);
 
   return (
     <section
+      id="hero"
       ref={heroRef}
       className="relative h-screen w-full overflow-hidden bg-black"
     >
@@ -77,7 +88,7 @@ export default function Hero() {
         muted
         loop
         playsInline
-        preload="auto"
+        preload="metadata"
         aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover object-[center_85%] brightness-[1.3] contrast-[1.2]"
       >
@@ -100,6 +111,7 @@ export default function Hero() {
             className="whitespace-nowrap font-serif font-black uppercase leading-none tracking-tight text-white"
             style={{ fontSize: "clamp(6rem, 15vw, 16rem)" }}
           >
+            <span className="sr-only">Autowerkstatt in Malters – </span>
             ACAB
           </h1>
 

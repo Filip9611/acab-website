@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, type ComponentType, type SVGProps } from "react";
-import { Phone, Mail } from "lucide-react";
+import { Phone, Mail, MapPin, ArrowUpRight } from "lucide-react";
 import { gsap } from "@/lib/animations";
 
 function WhatsAppIcon(props: SVGProps<SVGSVGElement>) {
@@ -20,6 +20,7 @@ function WhatsAppIcon(props: SVGProps<SVGSVGElement>) {
 type ContactCard = {
   label: string;
   value: string;
+  subline?: string;
   href: string;
   icon: ComponentType<SVGProps<SVGSVGElement> & { strokeWidth?: number }>;
   external?: boolean;
@@ -27,6 +28,14 @@ type ContactCard = {
 };
 
 const CARDS: ContactCard[] = [
+  {
+    label: "Standort",
+    value: "All Car's All Bike's Garage",
+    subline: "Eistrasse 3 · 6102 Malters",
+    href: "https://maps.google.com/?q=Eistrasse+3+6102+Malters",
+    icon: MapPin,
+    external: true,
+  },
   {
     label: "Anrufen",
     value: "+41 79 869 13 04",
@@ -53,7 +62,6 @@ export default function Contact() {
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
-  const metaRef = useRef<HTMLParagraphElement>(null);
   const mapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -88,17 +96,6 @@ export default function Contact() {
         },
       });
 
-      gsap.from(metaRef.current, {
-        opacity: 0,
-        duration: 0.8,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: metaRef.current,
-          start: "top 90%",
-          toggleActions: "play none none reverse",
-        },
-      });
-
       gsap.from(mapRef.current, {
         y: 40,
         opacity: 0,
@@ -122,91 +119,83 @@ export default function Contact() {
       className="relative overflow-x-clip bg-black px-6 py-28 md:py-40"
     >
       <div className="mx-auto max-w-7xl">
-        {/* Headline */}
-        <div ref={headerRef} className="mb-16 md:mb-20">
-          <h2 className="font-serif text-5xl font-black uppercase leading-[1] tracking-tight text-white md:text-7xl lg:text-8xl">
-            Schreiben Sie
-            <br />
-            <span className="text-white/30">uns.</span>
-          </h2>
-        </div>
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-[2fr_3fr] md:gap-10 lg:gap-12">
+          {/* LINKS: Headline + gestapelte Karten + Meta-Line */}
+          <div className="flex flex-col">
+            <div ref={headerRef} className="mb-10 md:mb-12">
+              <h2 className="font-serif text-4xl font-black uppercase leading-[1] tracking-tight text-white md:text-5xl lg:text-6xl">
+                Schreiben Sie
+                <br />
+                <span className="text-white/30">uns.</span>
+              </h2>
+            </div>
 
-        {/* 3 contact cards */}
-        <div
-          ref={cardsRef}
-          className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-6"
-        >
-          {CARDS.map(
-            ({ label, value, href, icon: Icon, external, accentColor }) => (
-              <a
-                key={label}
-                href={href}
-                target={external ? "_blank" : undefined}
-                rel={external ? "noopener noreferrer" : undefined}
-                className="group relative flex min-h-[220px] flex-col justify-between border border-white/15 bg-black p-8 transition-colors duration-300 hover:border-[#B91C1C] md:p-10"
-              >
-                <Icon
-                  className={`h-9 w-9 shrink-0 transition-colors duration-300 md:h-10 md:w-10 ${
-                    accentColor ? "" : "text-white"
-                  }`}
-                  strokeWidth={1.25}
-                  style={accentColor ? { color: accentColor } : undefined}
-                />
+            <div ref={cardsRef} className="flex flex-col gap-3">
+              {CARDS.map(
+                ({
+                  label,
+                  value,
+                  subline,
+                  href,
+                  icon: Icon,
+                  external,
+                  accentColor,
+                }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target={external ? "_blank" : undefined}
+                    rel={external ? "noopener noreferrer" : undefined}
+                    className="group relative flex items-center gap-5 border border-white/15 bg-black p-5 transition-colors duration-300 hover:border-[#B91C1C] md:p-6"
+                  >
+                    <Icon
+                      className={`h-7 w-7 shrink-0 transition-colors duration-300 md:h-8 md:w-8 ${
+                        accentColor ? "" : "text-white"
+                      }`}
+                      strokeWidth={1.25}
+                      style={
+                        accentColor ? { color: accentColor } : undefined
+                      }
+                    />
 
-                <div className="mt-10">
-                  <div className="font-sans text-[10px] uppercase tracking-[0.4em] text-white/50">
-                    {label}
-                  </div>
-                  <div className="mt-3 break-all font-serif text-xl font-black text-white md:text-2xl">
-                    {value}
-                  </div>
-                  <div className="mt-5 flex items-center gap-3">
-                    <div className="h-px w-8 bg-white/30 transition-all duration-300 group-hover:w-20 group-hover:bg-[#B91C1C]" />
-                    <span className="font-sans text-[10px] uppercase tracking-[0.35em] text-white/40 transition-colors duration-300 group-hover:text-[#B91C1C]">
-                      {label === "Anrufen"
-                        ? "Jetzt anrufen"
-                        : label === "WhatsApp"
-                          ? "Chat öffnen"
-                          : "Nachricht senden"}
-                    </span>
-                  </div>
-                </div>
-              </a>
-            ),
-          )}
-        </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="font-sans text-[10px] uppercase tracking-[0.35em] text-white/50">
+                        {label}
+                      </div>
+                      <div className="mt-0.5 truncate font-serif text-base font-black text-white md:text-lg">
+                        {value}
+                      </div>
+                      {subline && (
+                        <div className="mt-0.5 truncate font-sans text-xs text-white/60 md:text-sm">
+                          {subline}
+                        </div>
+                      )}
+                    </div>
 
-        {/* Compact meta line */}
-        <p
-          ref={metaRef}
-          className="mt-12 text-center font-sans text-xs uppercase tracking-[0.3em] text-white/50 md:mt-14 md:text-sm"
-        >
-          <a
-            href="https://maps.google.com/maps?q=Eistrasse+3,+6102+Malters"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="transition-colors hover:text-white"
+                    <ArrowUpRight
+                      className="h-5 w-5 shrink-0 text-white/40 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#B91C1C]"
+                      strokeWidth={1.5}
+                    />
+                  </a>
+                ),
+              )}
+            </div>
+
+          </div>
+
+          {/* RECHTS: Google Maps — füllt die volle Spaltenhöhe auf Desktop */}
+          <div
+            ref={mapRef}
+            className="aspect-[4/3] overflow-hidden border border-white/10 md:aspect-auto md:min-h-[500px]"
           >
-            Eistrasse 3, 6102 Malters
-          </a>
-          <span className="mx-3 text-white/20">·</span>
-          <span className="text-white/70">Mo-Fr 09:00-18:30</span>
-          <span className="mx-3 text-white/20">·</span>
-          <span>Sa &amp; So geschlossen</span>
-        </p>
-
-        {/* Map */}
-        <div
-          ref={mapRef}
-          className="mt-16 aspect-[16/9] w-full overflow-hidden border border-white/10 md:mt-20"
-        >
-          <iframe
-            src="https://maps.google.com/maps?q=Eistrasse%203%2C%206102%20Malters&t=&z=16&ie=UTF8&iwloc=&output=embed"
-            className="h-full w-full"
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            title="Standort ACAB Garage, Eistrasse 3, 6102 Malters"
-          />
+            <iframe
+              src="https://maps.google.com/maps?q=Eistrasse%203%2C%206102%20Malters&t=&z=16&ie=UTF8&iwloc=&output=embed"
+              className="h-full w-full"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Standort ACAB Garage, Eistrasse 3, 6102 Malters"
+            />
+          </div>
         </div>
       </div>
     </section>
