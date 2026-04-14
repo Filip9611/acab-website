@@ -116,7 +116,7 @@ export default function Contact() {
     <section
       id="contact"
       ref={sectionRef}
-      className="relative overflow-x-clip bg-black px-6 py-28 md:py-40"
+      className="relative overflow-x-clip bg-black px-6 py-16 md:py-32 lg:py-40"
     >
       <div className="mx-auto max-w-7xl">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-[2fr_3fr] md:gap-10 lg:gap-12">

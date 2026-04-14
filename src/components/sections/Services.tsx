@@ -101,7 +101,7 @@ export default function Services() {
     <section
       id="services"
       ref={sectionRef}
-      className="relative overflow-hidden bg-[#0A0A0A] px-6 py-28 md:py-40"
+      className="relative overflow-hidden bg-[#0A0A0A] px-6 py-16 md:py-32 lg:py-40"
     >
       <div className="mx-auto max-w-7xl">
         {/* Section header */}

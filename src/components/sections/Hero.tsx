@@ -82,7 +82,7 @@ export default function Hero() {
         }}
       />
 
-      {/* Layer 2: Video — überdeckt den Gradient wenn geladen. */}
+      {/* Layer 2: Video — nur auf Tablet/Desktop (spart Mobile-Bandbreite). */}
       <video
         autoPlay
         muted
@@ -90,15 +90,14 @@ export default function Hero() {
         playsInline
         preload="metadata"
         aria-hidden="true"
-        className="absolute inset-0 h-full w-full object-cover object-[center_85%] brightness-[1.3] contrast-[1.2]"
+        className="absolute inset-0 hidden h-full w-full object-cover object-[center_85%] brightness-[1.3] contrast-[1.2] md:block"
       >
         <source src="/videos/hero.mp4" type="video/mp4" />
       </video>
 
-      {/* Layer 3: Multiply-Knockout — schwarzer Overlay mit weisser Schrift.
-          Schwarz × Video = Schwarz (Video unsichtbar), Weiss × Video = Video
-          (sichtbar nur durch die Buchstaben). */}
-      <div className="absolute inset-0 flex items-center justify-center bg-black px-6 mix-blend-multiply">
+      {/* Layer 3: Auf Desktop Multiply-Knockout (Video sichtbar durch Text).
+          Auf Mobile: solides Schwarz (Text als solide Weiss auf schwarz). */}
+      <div className="absolute inset-0 flex items-center justify-center bg-black px-6 md:mix-blend-multiply">
         <div
           ref={logoBlockRef}
           className="flex flex-col items-center gap-3"
@@ -115,37 +114,40 @@ export default function Hero() {
             ACAB
           </h1>
 
-          <div className="flex items-center gap-5 md:gap-8">
-            <div className="h-px w-20 bg-white md:w-32" />
+          <div className="flex items-center gap-3 md:gap-8">
+            <div className="h-px w-8 bg-white md:w-32" />
             <span
               className="whitespace-nowrap font-sans font-black leading-none text-white"
               style={{
-                fontSize: "clamp(2.5rem, 8vw, 8rem)",
+                fontSize: "clamp(1.25rem, 8vw, 8rem)",
                 letterSpacing: "0.02em",
               }}
             >
               All Car&apos;s All Bike&apos;s
             </span>
-            <div className="h-px w-20 bg-white md:w-32" />
+            <div className="h-px w-8 bg-white md:w-32" />
           </div>
         </div>
       </div>
 
-      {/* Services: einzeilig, am unteren Rand. Ausserhalb des Multiply-Blends. */}
+      {/* Services: mobile wrap auf mehrere Zeilen, Desktop einzeilig. */}
       <ul
         ref={servicesRef}
-        className="absolute left-1/2 flex -translate-x-1/2 flex-nowrap items-center whitespace-nowrap px-4 uppercase text-white/70"
+        className="absolute left-1/2 flex max-w-[90vw] -translate-x-1/2 flex-wrap items-center justify-center gap-x-2 gap-y-1 px-4 uppercase text-white/70 md:max-w-none md:flex-nowrap md:gap-x-0 md:whitespace-nowrap"
         style={{
           bottom: "80px",
-          fontSize: "clamp(0.6rem, 1.2vw, 0.85rem)",
+          fontSize: "clamp(0.55rem, 1.2vw, 0.85rem)",
           letterSpacing: "0.15em",
         }}
       >
         {SERVICES.map((service, i) => (
           <li key={service} className="flex items-center">
-            <span>{service}</span>
+            <span className="whitespace-nowrap">{service}</span>
             {i < SERVICES.length - 1 && (
-              <span aria-hidden="true" className="mx-3 text-white/30">
+              <span
+                aria-hidden="true"
+                className="ml-2 hidden text-white/30 md:ml-3 md:inline md:mr-3"
+              >
                 ·
               </span>
             )}

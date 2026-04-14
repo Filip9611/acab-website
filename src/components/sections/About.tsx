@@ -68,7 +68,7 @@ export default function About() {
     <section
       id="about"
       ref={sectionRef}
-      className="relative overflow-x-clip bg-black px-6 py-28 md:py-40"
+      className="relative overflow-x-clip bg-black px-6 py-16 md:py-32 lg:py-40"
     >
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-12 md:grid-cols-12 md:gap-16">
@@ -155,17 +155,20 @@ export default function About() {
         {/* Stats bar */}
         <div
           ref={statsRef}
-          className="mt-20 grid grid-cols-1 gap-px border-y border-white/10 bg-white/10 sm:grid-cols-3"
+          className="mt-12 grid grid-cols-3 gap-px border-y border-white/10 bg-white/10 md:mt-20"
         >
           {STATS.map((stat) => (
-            <div key={stat.label} className="bg-black px-8 py-10">
-              <div className="font-serif text-5xl font-black leading-none tracking-tight text-white md:text-6xl">
+            <div
+              key={stat.label}
+              className="bg-black px-3 py-5 md:px-8 md:py-10"
+            >
+              <div className="font-serif text-2xl font-black leading-none tracking-tight text-white sm:text-3xl md:text-5xl lg:text-6xl">
                 {stat.value}
               </div>
-              <div className="mt-4 font-sans text-[10px] uppercase tracking-[0.35em] text-white/50">
+              <div className="mt-2 font-sans text-[9px] uppercase tracking-[0.25em] text-white/50 md:mt-4 md:text-[10px] md:tracking-[0.35em]">
                 {stat.label}
               </div>
-              <div className="mt-1 font-sans text-xs text-white/40">
+              <div className="mt-0.5 truncate font-sans text-[10px] text-white/40 md:mt-1 md:text-xs">
                 {stat.sub}
               </div>
             </div>
