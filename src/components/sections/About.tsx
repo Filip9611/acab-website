@@ -75,7 +75,9 @@ export default function About() {
           {/* Left: Text */}
           <div ref={leftRef} className="md:col-span-7">
             <h2 className="font-serif text-5xl font-black uppercase leading-[1] tracking-tight text-white md:text-7xl lg:text-8xl">
-              Ihre Werkstatt in Malters.
+              Ihre Werkstatt
+              <br />
+              <span className="text-white/30">in Malters.</span>
             </h2>
 
             <div className="mt-10 max-w-xl space-y-6">
@@ -86,7 +88,7 @@ export default function About() {
                 Carrosserie, Spenglerarbeiten und Lackierung aus einer Hand.
               </p>
               <p className="font-sans text-base leading-relaxed text-white/70 md:text-lg">
-                Qualität, Sicherheit und Zuverlässigkeit — von der ersten
+                Qualität, Sicherheit und Zuverlässigkeit. Von der ersten
                 Diagnose bis zur fertigen Reparatur nehmen wir uns Zeit für Ihr
                 Fahrzeug.
               </p>

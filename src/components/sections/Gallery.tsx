@@ -82,9 +82,11 @@ export default function Gallery() {
           <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
             <h2 className="font-serif text-5xl font-black uppercase leading-[1] tracking-tight text-white md:text-7xl lg:text-8xl">
               Einblicke
+              <br />
+              <span className="text-white/30">in die Werkstatt</span>
             </h2>
             <p className="max-w-md font-sans text-sm leading-relaxed text-white/50 md:text-base">
-              Ein Blick hinter die Kulissen — vom laufenden Projekt bis zum
+              Ein Blick hinter die Kulissen. Vom laufenden Projekt bis zum
               fertigen Resultat.
             </p>
           </div>

@@ -34,7 +34,7 @@ export default function Footer() {
             </div>
             <p className="mt-6 max-w-xs font-sans text-sm leading-relaxed text-white/50">
               Ihre Autowerkstatt in Malters. Fachgerechte Arbeit an Autos und
-              Motorrädern — aus einer Hand.
+              Motorrädern. Alles aus einer Hand.
             </p>
 
             <div className="mt-8 flex items-center gap-3">

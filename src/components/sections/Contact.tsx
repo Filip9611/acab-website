@@ -125,7 +125,9 @@ export default function Contact() {
         {/* Headline */}
         <div ref={headerRef} className="mb-16 md:mb-20">
           <h2 className="font-serif text-5xl font-black uppercase leading-[1] tracking-tight text-white md:text-7xl lg:text-8xl">
-            Kontakt
+            Schreiben Sie
+            <br />
+            <span className="text-white/30">uns.</span>
           </h2>
         </div>
 
@@ -188,9 +190,9 @@ export default function Contact() {
             Eistrasse 3, 6102 Malters
           </a>
           <span className="mx-3 text-white/20">·</span>
-          <span className="text-white/70">Mo–Fr 09:00–18:30</span>
+          <span className="text-white/70">Mo-Fr 09:00-18:30</span>
           <span className="mx-3 text-white/20">·</span>
-          <span>Sa+So Geschlossen</span>
+          <span>Sa &amp; So geschlossen</span>
         </p>
 
         {/* Map */}

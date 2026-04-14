@@ -17,7 +17,7 @@ const SERVICES = [
     icon: Wrench,
     title: "Mechanik",
     description:
-      "Von der Inspektion bis zur Motorreparatur. Moderne Diagnosegeräte und Erfahrung an allen Marken — Auto wie Motorrad.",
+      "Von der Inspektion bis zur Motorreparatur. Moderne Diagnosegeräte und Erfahrung bei allen Marken, für Autos wie Motorräder.",
   },
   {
     number: "02",
@@ -38,7 +38,7 @@ const SERVICES = [
     icon: Sparkles,
     title: "Aufbereitung",
     description:
-      "Innenreinigung, Politur und Nanoversiegelung. Ihr Fahrzeug wie neu — innen wie aussen auf Hochglanz gebracht.",
+      "Innenreinigung, Politur und Nanoversiegelung. Ihr Fahrzeug wie neu, innen wie aussen auf Hochglanz gebracht.",
   },
   {
     number: "05",
@@ -107,11 +107,13 @@ export default function Services() {
         {/* Section header */}
         <div ref={headerRef} className="mb-20 md:mb-28">
           <h2 className="font-serif text-5xl font-black uppercase leading-[1] tracking-tight text-white md:text-7xl lg:text-8xl">
-            Was wir für Sie tun
+            Was wir
+            <br />
+            <span className="text-white/30">für Sie tun</span>
           </h2>
           <p className="mt-8 max-w-xl font-sans text-base leading-relaxed text-white/60 md:text-lg">
-            Sechs Disziplinen. Eine Werkstatt. Fachgerechte Arbeit an Autos und
-            Motorrädern — von der kleinen Reparatur bis zur kompletten
+            Sechs Disziplinen, eine Werkstatt. Fachgerechte Arbeit an Autos und
+            Motorrädern, von der kleinen Reparatur bis zur kompletten
             Neulackierung.
           </p>
         </div>
