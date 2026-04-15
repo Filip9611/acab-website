@@ -75,12 +75,15 @@ export default function Gallery() {
     <section
       id="gallery"
       ref={sectionRef}
-      className="relative overflow-x-clip bg-[#0A0A0A] px-6 py-16 md:py-32 lg:py-40"
+      className="relative overflow-x-clip bg-[#0A0A0A] px-6 py-16 md:py-24 lg:py-32"
     >
       <div className="mx-auto max-w-7xl">
-        <div ref={headerRef} className="mb-20 md:mb-28">
+        <div ref={headerRef} className="mb-20 md:mb-24">
           <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
-            <h2 className="font-serif text-5xl font-black uppercase leading-[1] tracking-tight text-white md:text-7xl lg:text-8xl">
+            <h2
+              className="font-serif font-black uppercase leading-[1] tracking-tight text-white"
+              style={{ fontSize: "clamp(3rem, 5.5vw, 6rem)" }}
+            >
               Einblicke
               <br />
               <span className="text-white/30">in die Werkstatt</span>

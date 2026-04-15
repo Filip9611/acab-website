@@ -116,14 +116,17 @@ export default function Contact() {
     <section
       id="contact"
       ref={sectionRef}
-      className="relative overflow-x-clip bg-black px-6 py-16 md:py-32 lg:py-40"
+      className="relative overflow-x-clip bg-black px-6 py-16 md:py-24 lg:py-32"
     >
       <div className="mx-auto max-w-7xl">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-[2fr_3fr] md:gap-10 lg:gap-12">
           {/* LINKS: Headline + gestapelte Karten + Meta-Line */}
           <div className="flex flex-col">
             <div ref={headerRef} className="mb-10 md:mb-12">
-              <h2 className="font-serif text-4xl font-black uppercase leading-[1] tracking-tight text-white md:text-5xl lg:text-6xl">
+              <h2
+                className="font-serif font-black uppercase leading-[1] tracking-tight text-white"
+                style={{ fontSize: "clamp(2.25rem, 4vw, 3.75rem)" }}
+              >
                 Schreiben Sie
                 <br />
                 <span className="text-white/30">uns.</span>

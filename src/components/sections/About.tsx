@@ -68,13 +68,16 @@ export default function About() {
     <section
       id="about"
       ref={sectionRef}
-      className="relative overflow-x-clip bg-black px-6 py-16 md:py-32 lg:py-40"
+      className="relative overflow-x-clip bg-black px-6 py-16 md:py-24 lg:py-32"
     >
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-12 md:grid-cols-12 md:gap-16">
           {/* Left: Text */}
           <div ref={leftRef} className="md:col-span-7">
-            <h2 className="font-serif text-5xl font-black uppercase leading-[1] tracking-tight text-white md:text-7xl lg:text-8xl">
+            <h2
+              className="font-serif font-black uppercase leading-[1] tracking-tight text-white"
+              style={{ fontSize: "clamp(3rem, 5.5vw, 6rem)" }}
+            >
               Ihre Werkstatt
               <br />
               <span className="text-white/30">in Malters.</span>
@@ -155,14 +158,17 @@ export default function About() {
         {/* Stats bar */}
         <div
           ref={statsRef}
-          className="mt-12 grid grid-cols-3 gap-px border-y border-white/10 bg-white/10 md:mt-20"
+          className="mt-12 grid grid-cols-3 gap-px border-y border-white/10 bg-white/10 md:mt-16"
         >
           {STATS.map((stat) => (
             <div
               key={stat.label}
               className="bg-black px-3 py-5 md:px-8 md:py-10"
             >
-              <div className="font-serif text-2xl font-black leading-none tracking-tight text-white sm:text-3xl md:text-5xl lg:text-6xl">
+              <div
+                className="font-serif font-black leading-none tracking-tight text-white"
+                style={{ fontSize: "clamp(1.5rem, 4vw, 3.75rem)" }}
+              >
                 {stat.value}
               </div>
               <div className="mt-2 font-sans text-[9px] uppercase tracking-[0.25em] text-white/50 md:mt-4 md:text-[10px] md:tracking-[0.35em]">

@@ -101,12 +101,15 @@ export default function Services() {
     <section
       id="services"
       ref={sectionRef}
-      className="relative overflow-hidden bg-[#0A0A0A] px-6 py-16 md:py-32 lg:py-40"
+      className="relative overflow-hidden bg-[#0A0A0A] px-6 py-16 md:py-24 lg:py-32"
     >
       <div className="mx-auto max-w-7xl">
         {/* Section header */}
-        <div ref={headerRef} className="mb-20 md:mb-28">
-          <h2 className="font-serif text-5xl font-black uppercase leading-[1] tracking-tight text-white md:text-7xl lg:text-8xl">
+        <div ref={headerRef} className="mb-20 md:mb-24">
+          <h2
+            className="font-serif font-black uppercase leading-[1] tracking-tight text-white"
+            style={{ fontSize: "clamp(3rem, 5.5vw, 6rem)" }}
+          >
             Was wir
             <br />
             <span className="text-white/30">für Sie tun</span>
@@ -126,12 +129,13 @@ export default function Services() {
           {SERVICES.map(({ number, icon: Icon, title, description }) => (
             <article
               key={number}
-              className="group relative flex min-h-[320px] flex-col justify-between overflow-hidden border border-white/10 bg-[#0A0A0A] p-10 transition-colors duration-500 hover:bg-[#141414] md:p-14"
+              className="group relative flex min-h-[280px] flex-col justify-between overflow-hidden border border-white/10 bg-[#0A0A0A] p-10 transition-colors duration-500 hover:bg-[#141414] md:p-12"
             >
               {/* Watermark number */}
               <span
                 aria-hidden="true"
-                className="pointer-events-none absolute -right-2 -top-6 select-none font-serif text-[9rem] font-black leading-none text-white/[0.04] transition-[color,transform] duration-500 group-hover:text-white/[0.08] md:text-[11rem]"
+                className="pointer-events-none absolute -right-2 -top-6 select-none font-serif font-black leading-none text-white/[0.04] transition-[color,transform] duration-500 group-hover:text-white/[0.08]"
+                style={{ fontSize: "clamp(9rem, 11vw, 11rem)" }}
               >
                 {number}
               </span>
