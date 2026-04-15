@@ -152,7 +152,7 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-4 gap-y-2 px-6 py-6 font-sans text-[10px] uppercase tracking-[0.3em] text-white/40">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-4 gap-y-2 px-6 py-6 text-center font-sans text-[10px] uppercase tracking-[0.3em] text-white/40">
           <span>
             © {year} ACAB All Car&apos;s All Bike&apos;s GmbH
           </span>
