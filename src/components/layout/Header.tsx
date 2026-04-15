@@ -45,19 +45,24 @@ export default function Header() {
           className="absolute inset-0 border-b border-white/10 opacity-0 backdrop-blur-md"
           style={{ backgroundColor: "rgba(0, 0, 0, 0.95)" }}
         />
-        <nav className="relative flex h-full items-center justify-between px-6">
-          {/* ACAB-Header-Logo — initial unsichtbar, faded via GSAP ein. */}
+        <nav className="relative flex h-full items-center px-6">
+          {/* ACAB-Header-Logo — absolut positioniert, nimmt keinen Flex-Raum
+              ein. Initial unsichtbar, faded via GSAP ein. */}
           <a
             href="#hero"
             id="header-logo"
-            className="font-serif font-black uppercase tracking-tight text-white opacity-0"
+            className="absolute left-6 font-serif font-black uppercase tracking-tight text-white opacity-0"
             style={{ fontSize: "32px", letterSpacing: "0.02em" }}
           >
             ACAB
           </a>
 
-          {/* Desktop-Nav */}
-          <ul className="hidden gap-8 text-xs uppercase tracking-[0.25em] text-white/80 md:flex">
+          {/* Desktop-Nav — initial zentriert via mx-auto. GSAP animiert per
+              x-Transform beim Scrollen nach rechts. */}
+          <ul
+            id="header-nav"
+            className="mx-auto hidden gap-8 text-xs uppercase tracking-[0.25em] text-white/80 md:flex"
+          >
             {NAV.map((item) => (
               <li key={item.href}>
                 <a
@@ -74,7 +79,7 @@ export default function Header() {
           <button
             type="button"
             onClick={() => setOpen(true)}
-            className="p-2 text-white md:hidden"
+            className="ml-auto p-2 text-white md:hidden"
             aria-label="Menü öffnen"
             aria-expanded={open}
             aria-controls="mobile-menu"

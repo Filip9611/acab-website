@@ -27,6 +27,7 @@ export default function Hero() {
     // Header-Elemente ausserhalb des Hero-DOM via Selector auflösen.
     const headerLogo = document.querySelector<HTMLElement>("#header-logo");
     const headerBg = document.querySelector<HTMLElement>("#header-bg");
+    const headerNav = document.querySelector<HTMLElement>("#header-nav");
 
     const ctx = gsap.context(() => {
       // Eine Timeline, ein ScrollTrigger. Range: volle Hero-Höhe.
@@ -36,6 +37,7 @@ export default function Hero() {
           start: "top top",
           end: "bottom top",
           scrub: true,
+          invalidateOnRefresh: true,
         },
       });
 
@@ -51,13 +53,34 @@ export default function Hero() {
         0,
       );
 
-      // Header: ACAB-Logo + Background faden ein (0 → 1) in den letzten 30%
-      // (Position 0.7, duration 0.3 → bis 100%).
+      // Header: ACAB-Logo + Background faden ein (0 → 1) synchron mit
+      // der Nav-Verschiebung (30% → 60% Scroll-Progress).
       if (headerLogo && headerBg) {
         tl.to(
           [headerLogo, headerBg],
           { opacity: 1, ease: "none", duration: 0.3 },
-          0.7,
+          0.3,
+        );
+      }
+
+      // Nav: von Mitte (mx-auto, x=0) nach rechts. Zielwert wird on-the-fly
+      // aus Header- und Nav-Breite berechnet, damit Resize-sicher.
+      if (headerNav) {
+        tl.to(
+          headerNav,
+          {
+            x: () => {
+              const parent = headerNav.closest("nav");
+              if (!parent) return 0;
+              const parentWidth = parent.getBoundingClientRect().width;
+              const navWidth = headerNav.getBoundingClientRect().width;
+              const paddingRight = 24; // px-6
+              return (parentWidth - navWidth) / 2 - paddingRight;
+            },
+            ease: "none",
+            duration: 0.3,
+          },
+          0.3,
         );
       }
     }, heroRef);
