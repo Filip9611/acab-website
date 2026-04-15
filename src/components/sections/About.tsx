@@ -70,7 +70,7 @@ export default function About() {
       ref={sectionRef}
       className="relative overflow-x-clip bg-black px-[5vw] py-16 md:py-24 lg:py-32"
     >
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-6xl xl:max-w-7xl">
         <div className="grid gap-12 md:grid-cols-12 md:gap-16">
           {/* Left: Text */}
           <div ref={leftRef} className="md:col-span-7">

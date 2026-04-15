@@ -118,7 +118,7 @@ export default function Contact() {
       ref={sectionRef}
       className="relative overflow-x-clip bg-black px-[5vw] py-16 md:py-24 lg:py-32"
     >
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-6xl xl:max-w-7xl">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-[2fr_3fr] md:gap-10 lg:gap-12">
           {/* LINKS: Headline + gestapelte Karten + Meta-Line */}
           <div className="flex flex-col">

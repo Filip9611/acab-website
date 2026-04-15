@@ -23,7 +23,7 @@ export default function Footer() {
   return (
     <footer className="relative overflow-x-clip border-t border-white/10 bg-black">
       {/* Main grid */}
-      <div className="mx-auto max-w-6xl px-[5vw] pb-16 pt-24 md:pb-20 md:pt-32">
+      <div className="mx-auto max-w-6xl xl:max-w-7xl px-[5vw] pb-16 pt-24 md:pb-20 md:pt-32">
         <div className="grid gap-12 md:grid-cols-12">
           {/* Brand */}
           <div className="md:col-span-4">
@@ -152,7 +152,7 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-4 gap-y-2 px-[5vw] py-6 text-center font-sans text-[10px] uppercase tracking-[0.3em] text-white/40">
+        <div className="mx-auto flex max-w-6xl xl:max-w-7xl flex-wrap items-center justify-center gap-x-4 gap-y-2 px-[5vw] py-6 text-center font-sans text-[10px] uppercase tracking-[0.3em] text-white/40">
           <span>
             © {year} ACAB All Car&apos;s All Bike&apos;s GmbH
           </span>
