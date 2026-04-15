@@ -71,18 +71,7 @@ export default function Hero() {
       ref={heroRef}
       className="relative h-screen w-full overflow-hidden bg-black [isolation:isolate]"
     >
-      {/* Layer 1: Gradient-Shimmer-Fallback — sichtbar wenn das Video fehlt. */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 animate-shimmer"
-        style={{
-          backgroundImage:
-            "linear-gradient(115deg, #1a1a1a 0%, #3a3a3a 20%, #c8c8c8 45%, #f5f5f5 50%, #c8c8c8 55%, #3a3a3a 80%, #1a1a1a 100%)",
-          backgroundSize: "250% 250%",
-        }}
-      />
-
-      {/* Layer 2: Video — auf allen Breakpoints als Hintergrund. */}
+      {/* Layer 1: Video — Hintergrund auf allen Breakpoints, z-0. */}
       <video
         autoPlay
         muted
@@ -91,15 +80,15 @@ export default function Hero() {
         preload="auto"
         aria-hidden="true"
         disableRemotePlayback
-        className="absolute inset-0 h-full w-full object-cover object-[center_85%] brightness-[1.3] contrast-[1.2]"
+        className="absolute inset-0 z-0 h-full w-full object-cover object-[center_85%] brightness-[1.3] contrast-[1.2]"
       >
         <source src="/videos/hero.mp4" type="video/mp4" />
       </video>
 
-      {/* Layer 3: Multiply-Knockout auf allen Breakpoints — schwarzer Overlay
+      {/* Layer 2: Multiply-Knockout auf allen Breakpoints — schwarzes Overlay
           mit weisser Schrift. Schwarz × Video = Schwarz, Weiss × Video = Video
-          (sichtbar nur durch die Buchstaben). */}
-      <div className="absolute inset-0 flex items-center justify-center bg-black px-6 mix-blend-multiply">
+          (sichtbar nur durch die Buchstaben). z-10 über dem Video. */}
+      <div className="absolute inset-0 z-10 flex items-center justify-center bg-black px-6 mix-blend-multiply">
         <div
           ref={logoBlockRef}
           className="flex flex-col items-center gap-3"
@@ -135,7 +124,7 @@ export default function Hero() {
       {/* Services: Mobile = endlose Marquee-Laufschrift, Desktop = statische Zeile. */}
       <div
         ref={servicesRef}
-        className="pointer-events-none absolute inset-x-0"
+        className="pointer-events-none absolute inset-x-0 z-20"
         style={{ bottom: "80px" }}
       >
         {/* Mobile: horizontal scrollende Laufschrift (rechts → links) */}
@@ -188,7 +177,7 @@ export default function Hero() {
 
       {/* Chevron: direkt darunter. */}
       <div
-        className="pointer-events-none absolute inset-x-0 flex justify-center"
+        className="pointer-events-none absolute inset-x-0 z-20 flex justify-center"
         style={{ bottom: "40px" }}
       >
         <svg
