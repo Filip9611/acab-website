@@ -103,12 +103,12 @@ export default function Services() {
       ref={sectionRef}
       className="relative overflow-hidden bg-[#0A0A0A] px-[5vw] py-16 md:py-24 lg:py-32"
     >
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-6xl">
         {/* Section header */}
         <div ref={headerRef} className="mb-20 md:mb-24">
           <h2
             className="font-serif font-black uppercase leading-[1] tracking-tight text-white"
-            style={{ fontSize: "clamp(3rem, 5.5vw, 6rem)" }}
+            style={{ fontSize: "clamp(3rem, 4vw, 5rem)" }}
           >
             Was wir
             <br />

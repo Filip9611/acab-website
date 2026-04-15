@@ -77,12 +77,12 @@ export default function Gallery() {
       ref={sectionRef}
       className="relative overflow-x-clip bg-[#0A0A0A] px-[5vw] py-16 md:py-24 lg:py-32"
     >
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-6xl">
         <div ref={headerRef} className="mb-20 md:mb-24">
           <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
             <h2
               className="font-serif font-black uppercase leading-[1] tracking-tight text-white"
-              style={{ fontSize: "clamp(3rem, 5.5vw, 6rem)" }}
+              style={{ fontSize: "clamp(3rem, 4vw, 5rem)" }}
             >
               Einblicke
               <br />
