@@ -45,13 +45,13 @@ export default function Header() {
           className="absolute inset-0 border-b border-white/10 opacity-0 backdrop-blur-md"
           style={{ backgroundColor: "rgba(0, 0, 0, 0.95)" }}
         />
-        <nav className="relative flex h-full items-center px-6">
+        <nav className="relative flex h-full items-center px-[5vw]">
           {/* ACAB-Header-Logo — absolut positioniert, nimmt keinen Flex-Raum
               ein. Initial unsichtbar, faded via GSAP ein. */}
           <a
             href="#hero"
             id="header-logo"
-            className="absolute left-6 font-serif font-black uppercase tracking-tight text-white opacity-0"
+            className="absolute left-[5vw] font-serif font-black uppercase tracking-tight text-white opacity-0"
             style={{ fontSize: "32px", letterSpacing: "0.02em" }}
           >
             ACAB
@@ -99,7 +99,7 @@ export default function Header() {
         }`}
         aria-hidden={!open}
       >
-        <div className="flex h-14 items-center justify-between px-6">
+        <div className="flex h-14 items-center justify-between px-[5vw]">
           <span
             className="font-serif font-black uppercase tracking-tight text-white"
             style={{ fontSize: "32px", letterSpacing: "0.02em" }}
@@ -115,7 +115,7 @@ export default function Header() {
             <X className="h-6 w-6" strokeWidth={1.5} />
           </button>
         </div>
-        <ul className="flex flex-1 flex-col justify-center gap-2 px-6 pb-20">
+        <ul className="flex flex-1 flex-col justify-center gap-2 px-[5vw] pb-20">
           {NAV.map((item) => (
             <li key={item.href}>
               <a

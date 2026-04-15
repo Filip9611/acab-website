@@ -68,7 +68,7 @@ export default function About() {
     <section
       id="about"
       ref={sectionRef}
-      className="relative overflow-x-clip bg-black px-6 py-16 md:py-24 lg:py-32"
+      className="relative overflow-x-clip bg-black px-[5vw] py-16 md:py-24 lg:py-32"
     >
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-12 md:grid-cols-12 md:gap-16">

@@ -74,7 +74,8 @@ export default function Hero() {
               if (!parent) return 0;
               const parentWidth = parent.getBoundingClientRect().width;
               const navWidth = headerNav.getBoundingClientRect().width;
-              const paddingRight = 24; // px-6
+              // Header-Nav nutzt px-[5vw] — Padding ist 5% der Viewport-/Nav-Breite.
+              const paddingRight = parentWidth * 0.05;
               return (parentWidth - navWidth) / 2 - paddingRight;
             },
             ease: "none",
@@ -111,7 +112,7 @@ export default function Hero() {
       {/* Layer 2: Multiply-Knockout auf allen Breakpoints — schwarzes Overlay
           mit weisser Schrift. Schwarz × Video = Schwarz, Weiss × Video = Video
           (sichtbar nur durch die Buchstaben). z-10 über dem Video. */}
-      <div className="absolute inset-0 z-10 flex items-center justify-center bg-black px-6 mix-blend-multiply">
+      <div className="absolute inset-0 z-10 flex items-center justify-center bg-black px-[5vw] mix-blend-multiply">
         <div
           ref={logoBlockRef}
           className="flex flex-col items-center gap-3"
