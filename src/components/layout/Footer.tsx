@@ -1,4 +1,5 @@
 import { MapPin, Phone, Mail, Clock, ArrowUpRight } from "lucide-react";
+import LegalModals from "./LegalModals";
 
 const QUICK_LINKS = [
   { label: "Services", href: "#services" },
@@ -151,14 +152,18 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-6 py-6 font-sans text-[10px] uppercase tracking-[0.3em] text-white/40 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            © {year} ACAB All Car&apos;s All Bike&apos;s GmbH · Alle Rechte
-            vorbehalten
+        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-6 font-sans text-[10px] uppercase tracking-[0.3em] text-white/40 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            <span>
+              © {year} ACAB All Car&apos;s All Bike&apos;s GmbH · Alle Rechte
+              vorbehalten
+            </span>
+            <span aria-hidden="true" className="h-3 w-px bg-white/20" />
+            <LegalModals />
           </div>
           <div className="flex items-center gap-4">
             <span>Malters · Schweiz</span>
-            <span className="h-3 w-px bg-white/20" />
+            <span aria-hidden="true" className="h-3 w-px bg-white/20" />
             <a
               href="#hero"
               className="transition-colors hover:text-white"
